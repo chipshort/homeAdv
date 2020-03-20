@@ -5,7 +5,8 @@ WORKDIR /build
 COPY ./package.json ./package-lock.json ./
 RUN npm ci
 
-COPY ./angular.json ./tsconfig.json ./tsconfig.app.json ./tsconfig.spec.json ./
+COPY ./angular.json ./tsconfig.json ./tsconfig.app.json ./tsconfig.spec.json \
+    ./ngsw-config.json ./
 COPY ./src ./src
 
 RUN npm run ng build -- --prod
