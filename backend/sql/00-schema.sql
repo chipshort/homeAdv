@@ -18,6 +18,7 @@ create table ActiveChallenge (
 	challenge_id int not null,
 	person_id int not null primary key,
 	activation_ts timestamp not null,
+	completed boolean not null,
 	foreign key(person_id) references Person(id),
 	foreign key(challenge_id) references Challenge(id)
 );

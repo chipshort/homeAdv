@@ -1,7 +1,8 @@
 
 deploy:
     script:
+        - docker-compose -f ./compose_ci.yml build
         - docker-compose -f ./compose_ci.yml down
-        - docker-compose -f ./compose_ci.yml up -d --build
+        - docker-compose -f ./compose_ci.yml up -d
     tags:
         - docker
