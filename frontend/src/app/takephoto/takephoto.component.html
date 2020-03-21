@@ -1,1 +1,26 @@
-<p>takephoto works!</p>
+<!-- TODO: how to do full screen webcam? -->
+<!--<webcam class="fill-screen" [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"-->
+<!--            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"-->
+<!--            [videoOptions]="videoOptions"-->
+<!--            [imageQuality]="1"-->
+<!--            (cameraSwitched)="cameraWasSwitched($event)"-->
+<!--            (initError)="handleInitError($event)"-->
+<!--&gt;</webcam>-->
+<div class="fill-screen content">
+  <video class="camera fill-screen"></video>
+</div>
+
+<!--<div class="fill-screen">-->
+<!--Test-->
+<!--</div>-->
+<!--    <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>-->
+
+<!--<div class="snapshot" *ngIf="webcamImage">-->
+<!--  <h2>Nice one!</h2>-->
+<!--  <img [src]="webcamImage.imageAsDataUrl"/>-->
+<!--</div>-->
+
+<!--<h4 *ngIf="errors.length > 0">Messages:</h4>-->
+<!--<ul *ngFor="let error of errors">-->
+<!--  <li>{{error | json}}</li>-->
+<!--</ul>-->
