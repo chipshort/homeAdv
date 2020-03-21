@@ -27,10 +27,14 @@ use uuid::Uuid;
 #[derive(Serialize)]
 pub struct UploadResponse {}
 
-#[post("/challenge", format = "plain", data = "<data>")]
-pub fn upload_result(user_id: UserId, data: Data) -> Result<Json<UploadResponse>, std::io::Error> {
+#[post("/challenge/<challenge_id>", format = "plain", data = "<data>")]
+pub fn upload_result(
+    user_id: UserId,
+    challenge_id: u32,
+    data: Data,
+) -> Result<Json<UploadResponse>, std::io::Error> {
     let mut file = String::from("./data/");
-    tempfile.push(format!("{}", uuid::Uuid::new_v4()));
-    data.stream_to_file(&tempfile)?;
+    file.push_str(&format!("{}", uuid::Uuid::new_v4()));
+    data.stream_to_file(file)?;
     Ok(Json(UploadResponse {}))
 }

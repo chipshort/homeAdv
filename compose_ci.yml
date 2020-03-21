@@ -16,6 +16,7 @@ services:
             max-file: "2"
       
     networks:
+        - default
         - deploy
     # ports:
     #   - "80:80"
@@ -30,6 +31,8 @@ services:
         options:
             max-size: 10M
             max-file: "2"
+    networks:
+        - default
     # volumes:
     # links:
     #   - postgres
