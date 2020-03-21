@@ -360,9 +360,9 @@ class TakephotoComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 const stream = yield navigator.mediaDevices.getUserMedia({ audio: false, video: this.videoOptions });
-                alert("found stream");
+                alert('found stream');
                 const video = document.querySelector('.camera');
-                video.src = window.URL.createObjectURL(stream);
+                video.src = URL.createObjectURL(stream);
                 /* use the stream */
             }
             catch (err) {

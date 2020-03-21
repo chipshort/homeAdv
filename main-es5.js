@@ -691,9 +691,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 3:
                     stream = _context.sent;
-                    alert("found stream");
+                    alert('found stream');
                     video = document.querySelector('.camera');
-                    video.src = window.URL.createObjectURL(stream);
+                    video.src = URL.createObjectURL(stream);
                     /* use the stream */
 
                     _context.next = 12;
