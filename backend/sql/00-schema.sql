@@ -26,7 +26,7 @@ create table ChallengeCompletion (
 	id serial not null primary key,
 	challenge_id int not null,
 	person_id int not null,
-	image_url text not null,
+	image_uuid text not null,
 	-- approvals int not null,
 	-- rejections int not null,
 	foreign key(challenge_id) references Challenge(id),
