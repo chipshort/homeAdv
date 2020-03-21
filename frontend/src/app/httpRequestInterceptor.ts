@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError} from 'rxjs/operators';
-import {AuthService} from './authentification/auth.service';
+import {AuthService} from './_services/authentification/auth.service';
 import {Injectable} from '@angular/core';
 import {throwError} from 'rxjs';
 import {Router} from '@angular/router';

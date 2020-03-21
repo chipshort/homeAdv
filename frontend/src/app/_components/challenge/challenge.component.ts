@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 // import { challenge } from './challenge';
-import { ChallengeService } from '../challenge.service';
-import { Challenge } from '../challengetype';
+import { ChallengeService } from '../../_services/challenge/challenge.service';
+import { Challenge } from '../../challengetype';
 
 @Component({
   selector: 'app-challenge',
@@ -11,6 +11,7 @@ import { Challenge } from '../challengetype';
 })
 export class ChallengeComponent implements OnInit {
   challenge: Challenge;
+
   constructor(private challengeService: ChallengeService) { }
 
   getChallenge(): void {

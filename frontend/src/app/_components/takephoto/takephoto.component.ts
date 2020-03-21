@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ChallengeService } from '../challenge.service';
-import {Challenge} from '../challengetype';
+import { ChallengeService } from '../../_services/challenge/challenge.service';
+import {Challenge} from '../../challengetype';
 
 @Component({
   selector: 'app-takephoto',
@@ -19,7 +19,6 @@ export class TakephotoComponent implements OnInit {
   constructor(private challengeService: ChallengeService) { }
 
   public ngOnInit(): void {
-    // this.initVideo();
     navigator.mediaDevices.enumerateDevices()
       .then(md => {
         this.initVideo();
@@ -34,8 +33,9 @@ export class TakephotoComponent implements OnInit {
       video.srcObject = stream;
       /* use the stream */
     } catch (err) {
+      // if (err instanceof )
       alert(err);
-      /* handle the error */
+      /* TODO: handle the error */
     }
   }
 
@@ -45,7 +45,7 @@ export class TakephotoComponent implements OnInit {
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0);
 
-    const result = context.getImageData(0, 0, canvas.width, canvas.height);//canvas.toDataURL('image/png');
+    const result = context.getImageData(0, 0, canvas.width, canvas.height); //canvas.toDataURL('image/png');
 
     this.challengeService.uploadChallengeResult(this.challenge, result);
   }

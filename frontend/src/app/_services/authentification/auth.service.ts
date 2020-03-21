@@ -13,8 +13,7 @@ export class AuthService {
   public logginStatus: Observable<boolean>;
 
   constructor(private http: HttpClient,
-              private router: Router,
-              private activeRoute: ActivatedRoute) {
+              private router: Router) {
 
     this.logginStatus = new Observable<boolean>((observer) => {
       if (this.loggedIn != null) {
@@ -52,20 +51,11 @@ export class AuthService {
 
   clearUserData() {
     this.loggedIn = false;
-    // this.appSettingsService.user = null;
     document.cookie = '';
   }
 
   clearAndNavigateToLogin() {
     this.router.navigate(['/login']);
     this.clearUserData();
-  }
-
-  private setAppSettingsData(data: {user, visibleboards, company, version, adminMenuEntries}) {
-    // this.appSettingsService.user = data.user;
-    // this.appSettingsService.visibleBoards = data.visibleboards;
-    // this.appSettingsService.company = data.company;
-    // this.appSettingsService.version = data.version;
-    // this.appSettingsService.adminMenuEntries = data.adminMenuEntries;
   }
 }
