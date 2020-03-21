@@ -17,8 +17,8 @@ services:
       
     networks:
         - deploy
-    ports:
-      - "80:80"
+    # ports:
+    #   - "80:80"
     links:
       - backend
   backend:
