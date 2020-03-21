@@ -27,7 +27,10 @@ fn main() {
             "/rest/account",
             routes![account::login, account::logout, account::create],
         )
-        .mount("/rest/challenges", routes![challenge::get_challenge])
+        .mount(
+            "/rest/challenges",
+            routes![challenge::get_challenge, challenge::upload_result],
+        )
         .attach(MainDbCon::fairing())
         .launch();
 }

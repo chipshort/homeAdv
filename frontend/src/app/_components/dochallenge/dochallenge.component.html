@@ -1,0 +1,9 @@
+<div class="content" role="main">
+  <div class="text-center">
+    <h1>{{challenge.title}}</h1>
+    <img src="{{challenge.image}}" class="img-fill-width" />
+
+    <p>{{challenge.description}}</p>
+  </div>
+  <a routerLink="/challenge/takephoto" [state]="challenge" mat-fab aria-label="Challenge beendet" color="primary" class="floating-action-button right" ><mat-icon>camera_alt</mat-icon></a>
+</div>

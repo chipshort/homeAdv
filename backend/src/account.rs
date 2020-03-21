@@ -1,4 +1,4 @@
-use rocket::http::{Cookie, Cookies};
+use rocket::http::{Cookie, Cookies, Status};
 use rocket::response::Response;
 use rocket_contrib::json::Json;
 
@@ -11,12 +11,30 @@ pub struct LoginRequest {
 }
 
 #[post("/login", data = "<request>")]
-pub fn login(request: Json<LoginRequest>, mut cookies: Cookies) -> Response {
-    let uid = 1;
-    cookies.add_private(Cookie::new("user_id", format!("{}", uid)));
+pub fn login(request: Json<LoginRequest>, mut cookies: Cookies, con: MainDbCon) -> Response {
+    let r = con.0.query(
+        "SELECT id, password FROM person where name = $1",
+        &[&request.username],
+    );
 
     let mut res = Response::new();
-    res.set_status(rocket::http::Status::new(204, "login successful"));
+    match r {
+        Ok(rows) if rows.len() == 1 => {
+            let row = rows.get(0);
+            let id: i32 = row.get(0);
+            let hash: String = row.get(1);
+            match verify(&request.password, &hash) {
+                Ok(true) => {
+                    cookies.add_private(Cookie::new("user_id", format!("{}", id)));
+                    res.set_status(Status::new(204, "login successful"));
+                    return res;
+                }
+                _ => {}
+            }
+        }
+        _ => {}
+    }
+    res.set_status(Status::new(401, "username of password incorrect"));
     res
 }
 
@@ -41,13 +59,13 @@ pub enum AccountCreationError {
 use rocket::request::FromRequest;
 use std::str::FromStr;
 
-pub struct UserId(pub u32);
+pub struct UserId(pub i32);
 
 impl FromStr for UserId {
     type Err = <u32 as FromStr>::Err;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        u32::from_str(s).map(UserId)
+        i32::from_str(s).map(UserId)
     }
 }
 

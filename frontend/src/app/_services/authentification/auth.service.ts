@@ -13,8 +13,7 @@ export class AuthService {
   public logginStatus: Observable<boolean>;
 
   constructor(private http: HttpClient,
-              private router: Router,
-              private activeRoute: ActivatedRoute) {
+              private router: Router) {
 
     this.logginStatus = new Observable<boolean>((observer) => {
       if (this.loggedIn != null) {
@@ -23,13 +22,14 @@ export class AuthService {
         // HTTP RequestInterceptor and not here
         observer.next(this.loggedIn);
       } else {
-        //
+        observer.next(false);
       }
     });
   }
 
   login(username: string, password: string) {
     const subject: Subject<boolean> = new Subject();
+    this.clearUserData();
 
     this.http.post(
       '/account/login',
@@ -44,28 +44,57 @@ export class AuthService {
       },
       () => {
         subject.error(false);
+      });
+
+    return subject;
+  }
+
+  logout() {
+    this.clearUserData();
+    const subject: Subject<boolean> = new Subject();
+
+    this.http.post('/account/logout', {}).subscribe(
+      () => {
+        this.loggedIn = false;
+        subject.next(true);
+      },
+      () => {
+        subject.error(false);
+      });
+
+    return subject;
+  }
+
+  signup(username: string, password: string, age: number) {
+    const subject: Subject<boolean> = new Subject();
+    this.clearUserData();
+
+    this.http.post(
+      '/account/create',
+      {
+        username,
+        password,
+        age
       }
-    );
+    ).subscribe(
+      () => {
+        this.loggedIn = true;
+        subject.next(true);
+      },
+      () => {
+        subject.error(false);
+      });
 
     return subject;
   }
 
   clearUserData() {
     this.loggedIn = false;
-    // this.appSettingsService.user = null;
     document.cookie = '';
   }
 
   clearAndNavigateToLogin() {
     this.router.navigate(['/login']);
     this.clearUserData();
-  }
-
-  private setAppSettingsData(data: {user, visibleboards, company, version, adminMenuEntries}) {
-    // this.appSettingsService.user = data.user;
-    // this.appSettingsService.visibleBoards = data.visibleboards;
-    // this.appSettingsService.company = data.company;
-    // this.appSettingsService.version = data.version;
-    // this.appSettingsService.adminMenuEntries = data.adminMenuEntries;
   }
 }
