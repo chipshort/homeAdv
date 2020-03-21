@@ -1,19 +1,24 @@
 use crate::account::UserId;
+use crate::MainDbCon;
 use rocket_contrib::json::Json;
 
 #[derive(Serialize)]
 pub struct ChallengeResponse {
+    id: i32,
     title: String,
-    categories: Vec<String>,
+    topic: Option<String>,
     image: Option<String>,
     description: String,
 }
 
 #[get("/")]
-pub fn get_challenge(user_id: UserId) -> Json<ChallengeResponse> {
+pub fn get_challenge(user_id: UserId, con: MainDbCon) -> Json<ChallengeResponse> {
+    // let c =
+
     let res = ChallengeResponse {
+        id : 0,
         title: "10 Löffel sind ein Haus".into(),
-        categories: vec!("K".into(), "T".into(), "E".into()),
+        topic: Some("Spass".into()),
         image: Some("https://as2.ftcdn.net/jpg/02/22/61/43/500_F_222614376_uyur5TG31C1NaKbyWmimI9NjXFlh6KRr.jpg".into()),
         description: "Suche 10 Löffel und lege ein Haus".into(),
     };

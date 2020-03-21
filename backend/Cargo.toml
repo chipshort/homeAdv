@@ -13,3 +13,11 @@ serde = "*"
 serde_derive = "*"
 uuid = { version = "0.8.1", features = ["serde", "v4"] }
 bcrypt = "*"
+
+[[bin]]
+name = "dummy"
+path = "src/dummy.rs"
+
+[[bin]]
+name= "backend"
+path = "src/main.rs"
