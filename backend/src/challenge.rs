@@ -1,6 +1,5 @@
 use crate::account::UserId;
 use crate::MainDbCon;
-use chrono::NaiveDateTime;
 use rocket_contrib::json::Json;
 
 #[derive(Serialize)]
@@ -55,14 +54,13 @@ pub fn get_challenge(
         id: row.get(0),
         title: row.get(1),
         topic: row.get(2),
-        image: row.get(3),
-        description: row.get(4),
+        description: row.get(3),
+        image: row.get(4),
     };
     Ok(Json(res))
 }
 
 use rocket::Data;
-use std::env;
 use uuid::Uuid;
 
 #[derive(Serialize)]

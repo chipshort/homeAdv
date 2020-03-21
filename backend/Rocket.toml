@@ -7,6 +7,8 @@ main_db = {url = "postgresql://homeadv:mD8pCKawDbZ3cZy@localhost:54320/homeadv" 
 
 [production]
 port = 80
+secret_key = "WAY6kO++vazSNE/h4CaAuKflbMe/SPei7F1Kp0t+bvk="
 
 [development]
 port = 8001
+secret_key = "WAY6kO++vazSNE/h4CaAuKflbMe/SPei7F1Kp0t+bvk="
