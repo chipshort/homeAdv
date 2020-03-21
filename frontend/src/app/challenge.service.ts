@@ -1,25 +1,15 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import {Challenge} from './challengetype';
-import {challenge} from './challenge/challenge.data';
-import {Observable} from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ChallengeService {
 
   getChallenge() {
-    return this.http.post(
-      '/',
-      {}
-    );
+    return this.http.get('/');
   }
 
   uploadChallengeResult(uploadedChallenge: Challenge, image: ImageData) {

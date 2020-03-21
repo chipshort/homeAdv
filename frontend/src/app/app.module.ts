@@ -15,6 +15,7 @@ import { TestpageComponent } from './testpage/testpage.component';
 import {HttpRequestInterceptor} from './httpRequestInterceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import {AuthService} from './authentification/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule
   ],
   providers: [
+    AuthService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

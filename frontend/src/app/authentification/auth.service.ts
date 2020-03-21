@@ -23,7 +23,7 @@ export class AuthService {
         // HTTP RequestInterceptor and not here
         observer.next(this.loggedIn);
       } else {
-        //
+        observer.next(false);
       }
     });
   }
