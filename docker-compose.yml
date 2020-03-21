@@ -14,15 +14,15 @@ services:
       context: ./backend
       dockerfile: ../docker/backend.dockerfile
     # volumes:
-    # links:
-    #   - postgres
-#   postgres:
-#     build:
-#       context: .
-#       dockerfile: ./dockerfiles/postgres.dockerfile
-#     ports:
-#       - "54320:5432"
-#     environment:
-#       POSTGRES_USER: homeadv
-#       POSTGRES_PASSWORD: mD8pCKawDbZ3cZy
-#       TZ: "Europe/Berlin"
+    links:
+      - postgres
+  postgres:
+    build:
+      context: .
+      dockerfile: ./docker/postgres.dockerfile
+    ports:
+      - "54320:5432"
+    environment:
+      POSTGRES_USER: homeadv
+      POSTGRES_PASSWORD: mD8pCKawDbZ3cZy
+      TZ: "Europe/Berlin"

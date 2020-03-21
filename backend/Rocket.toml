@@ -2,5 +2,8 @@
 [global.databases]
 main_db = {url = "homeadv:mD8pCKawDbZ3cZy@postgres/homeadv" }
 
+[development]
+main_db = {url = "homeadv:mD8pCKawDbZ3cZy@postgres:54320/homeadv" }
+
 [production]
 port = 80
