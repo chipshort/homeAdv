@@ -344,8 +344,8 @@ class TakephotoComponent {
         this.multipleWebcamsAvailable = false;
         // public deviceId: string;
         this.videoOptions = {
-            // width: {ideal: 1024},
-            // height: {ideal: 576},
+            width: { ideal: 1024 },
+            height: { ideal: 576 },
             facingMode: 'environment'
         };
     }
