@@ -71,7 +71,7 @@ use uuid::Uuid;
 #[derive(Serialize)]
 pub struct UploadResponse {}
 
-#[post("/<challenge_id>", format = "plain", data = "<data>")]
+#[post("/<challenge_id>", format = "any", data = "<data>")]
 pub fn upload_result(
     user_id: UserId,
     challenge_id: u32,
