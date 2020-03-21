@@ -34,4 +34,8 @@ export class LoginComponent implements OnInit {
     console.warn('logging in', loginData);
   }
 
+  onSignup(loginData) {
+    // this.authService.signup(loginData.username, loginData.password)
+  }
+
 }

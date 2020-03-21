@@ -11,6 +11,7 @@ import {AuthService} from './_services/authentification/auth.service';
 import {Injectable} from '@angular/core';
 import {throwError} from 'rxjs';
 import {Router} from '@angular/router';
+import {environment} from '../environments/environment';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -21,7 +22,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const newReq = req.clone({
-      url: 'http://localhost:8000/rest' + req.url, //FIXME: only for fast debugging
+      url: (environment.production ? 'http://localhost:8000/rest' : '') + req.url,
       withCredentials: true
     });
 
