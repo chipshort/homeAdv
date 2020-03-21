@@ -11,6 +11,7 @@ use rocket_contrib::databases::postgres;
 
 mod account;
 mod challenge;
+mod verification;
 
 #[database("main_db")]
 pub struct MainDbCon(postgres::Connection);
@@ -30,6 +31,13 @@ fn main() {
         .mount(
             "/rest/challenges",
             routes![challenge::get_challenge, challenge::upload_result],
+        )
+        .mount(
+            "/rest/verification",
+            routes![
+                verification::get_verification,
+                verification::get_submission_picture
+            ],
         )
         .attach(MainDbCon::fairing())
         .launch();
