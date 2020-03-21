@@ -11,3 +11,5 @@ For example: `chromium --disable-web-security --user-data-dir="test"`.
 
 The backend and frontend only run on different servers to speed up the build process.
 In the production release (`docker-compose up --build`), both run on the same server, so no Cross-Origin-Requests are made.
+
+For the takephoto component to work correctly, the client should be a phone.

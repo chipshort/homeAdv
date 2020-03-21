@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {AuthService} from '../../_services/authentification/auth.service';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ErrormessageComponent} from '../errormessage/errormessage.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm;
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private snackBar: MatSnackBar, private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
       username: '',
       password: ''
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
       if (success) {
         this.router.navigate(['/challenge']);
       } else {
-        //TODO: show error!
+        this.snackBar.openFromComponent(ErrormessageComponent);
       }
     });
   }
@@ -47,3 +49,5 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+

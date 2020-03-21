@@ -45,7 +45,6 @@ export class ChallengeService {
     // this.http.post('/challenge/' + uploadedChallenge.id, {})
 
     alert(image);
-
   }
 
   constructor(private http: HttpClient) { }

@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ChallengeService } from '../../_services/challenge/challenge.service';
 import {Challenge} from '../../challenge';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-takephoto',
@@ -14,11 +17,13 @@ export class TakephotoComponent implements OnInit {
     facingMode: 'environment'
   };
 
-  @Input() challenge: Challenge;
+  challenge: Challenge;
 
-  constructor(private challengeService: ChallengeService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private challengeService: ChallengeService) { }
 
   public ngOnInit(): void {
+    this.challenge = window.history.state;
+
     navigator.mediaDevices.enumerateDevices()
       .then(md => {
         this.initVideo();
@@ -46,8 +51,9 @@ export class TakephotoComponent implements OnInit {
     // context.drawImage(video, 0, 0);
     context.fillRect(100, 100, 20, 20);
 
-    const result = context.getImageData(0, 0, canvas.width, canvas.height); //canvas.toDataURL('image/png');
+    const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
 
     this.challengeService.uploadChallengeResult(this.challenge, result);
+    this.router.navigate(['/verify']);
   }
 }

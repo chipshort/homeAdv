@@ -12,15 +12,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   position: fixed !important;
   bottom: 1em;
 }
-
 .right {
   right: 1em;
 }
-
 .left {
   left: 1em;
 }
 
 .text-center {
   text-align: center;
+}
+
+.img-fill-width {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
 }

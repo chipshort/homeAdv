@@ -17,6 +17,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './_components/login/login.component';
 import {AuthService} from './_services/authentification/auth.service';
 import { VerificationComponent } from './_components/verification/verification.component';
+import { ThanksComponent } from './_components/thanks/thanks.component';
+import { ErrormessageComponent } from './_components/errormessage/errormessage.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { VerificationComponent } from './_components/verification/verification.c
     TakephotoComponent,
     TestpageComponent,
     LoginComponent,
-    VerificationComponent
+    VerificationComponent,
+    ThanksComponent,
+    ErrormessageComponent
   ],
   imports: [
     DemoMaterialModule,
