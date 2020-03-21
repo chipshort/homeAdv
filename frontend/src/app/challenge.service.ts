@@ -1,21 +1,32 @@
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import {Challenge} from './challengetype';
 import {challenge} from './challenge/challenge.data';
+import {Observable} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChallengeService {
 
-  getChallenge(): Challenge {
-    return challenge; //TODO: change this to use web request
-    //TODO: in an ideal world this would be Observable and updated automatically once the next challenge comes out
+  getChallenge() {
+    return this.http.post(
+      '/',
+      {}
+    );
   }
 
-  uploadChallengeResult(uploadedChallenge: Challenge, image: string) {
+  uploadChallengeResult(uploadedChallenge: Challenge, image: ImageData) {
     //TODO: upload image
+
     alert(image);
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 }

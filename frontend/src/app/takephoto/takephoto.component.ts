@@ -45,7 +45,7 @@ export class TakephotoComponent implements OnInit {
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0);
 
-    const result = canvas.toDataURL('image/webp');
+    const result = context.getImageData(0, 0, canvas.width, canvas.height);//canvas.toDataURL('image/png');
 
     this.challengeService.uploadChallengeResult(this.challenge, result);
   }
