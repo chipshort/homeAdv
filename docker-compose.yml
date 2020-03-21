@@ -7,12 +7,12 @@ services:
       dockerfile: ../docker/frontend.dockerfile
     ports:
       - "8000:80"
-    # links:
-    #   - backend
-#   backend:
-#     build:
-#       context: ./backend
-#       dockerfile: ./docker/backend.dockerfile
+    links:
+      - backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/backend.dockerfile
     # volumes:
     # links:
     #   - postgres
