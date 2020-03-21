@@ -11,6 +11,7 @@ use rocket_contrib::databases::postgres;
 
 mod account;
 mod challenge;
+mod leaderboard;
 
 #[database("main_db")]
 pub struct MainDbCon(postgres::Connection);
@@ -23,11 +24,10 @@ fn index() -> &'static str {
 fn main() {
     rocket::ignite()
         .mount("/rest/", routes![index])
-        .mount(
-            "/rest/account",
-            routes![account::login, account::logout, account::create],
+        .mount("/rest/account", routes![account::login, account::logout, account::create],
         )
         .mount("/rest/challenges", routes![challenge::get_challenge])
+	.mount("/rest/leaderboard", routes![leaderboard::get_leaderboard])
         .attach(MainDbCon::fairing())
         .launch();
 }
