@@ -1,1 +1,10 @@
-<p>verification works!</p>
+<div class="content" role="main">
+  <div class="text-center">
+    <h1>{{challenge.title}}</h1>
+    <img src="{{challenge.image}}" class="img-responsive" />
+
+    <p>{{challenge.description}}</p>
+  </div>
+  <button mat-fab aria-label="Richtig" color="primary" class="floating-action-button left"><mat-icon>done</mat-icon></button>
+  <button mat-fab aria-label="Falsch" color="warn" class="floating-action-button right"><mat-icon>cancel</mat-icon></button>
+</div>

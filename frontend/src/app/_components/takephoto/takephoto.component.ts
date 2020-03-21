@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ChallengeService } from '../../_services/challenge/challenge.service';
-import {Challenge} from '../../challengetype';
+import {Challenge} from '../../challenge';
 
 @Component({
   selector: 'app-takephoto',

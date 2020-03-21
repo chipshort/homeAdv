@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DochallengeComponent } from './challenge.component';
+import { DochallengeComponent } from './dochallenge.component';
 
 describe('DochallengeComponent', () => {
   let component: DochallengeComponent;

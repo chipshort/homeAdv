@@ -10,8 +10,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .floating-action-button {
   position: fixed !important;
-  right: 1em;
   bottom: 1em;
+}
+
+.right {
+  right: 1em;
+}
+
+.left {
+  left: 1em;
 }
 
 .text-center {
