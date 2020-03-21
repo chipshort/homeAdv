@@ -1,5 +1,5 @@
 use crate::account::UserId;
-use crate::MainDBCon;
+use crate::MainDbCon;
 use rocket_contrib::json::Json;
 
 #[derive(Serialize)]
@@ -9,11 +9,17 @@ pub struct LeaderboardResponse {
 }
 
 #[get("/")]
-pub fn get_leaderboard(_user_id: UserId, con: MainDbCon) -> Result<Json<Vec<LeaderboardResponse>>, Box <dyn std::error:Error>> {
-	let lb = con.0.query("SELECT id, score FROM person ORDER BY score DESC LIMIT 10")?;
+pub fn get_leaderboard(
+	_user_id: UserId,
+	con: MainDbCon,
+) -> Result<Json<Vec<LeaderboardResponse>>, Box<dyn std::error::Error>> {
+	let lb = con.0.query(
+		"SELECT id, score FROM person ORDER BY score DESC LIMIT 10",
+		&[],
+	)?;
 	let mut vec = Vec::new();
-	for i in lb {
-		let leader = LeaderboardResponse{
+	for i in lb.iter() {
+		let leader = LeaderboardResponse {
 			id: i.get(0),
 			score: i.get(1),
 		};
