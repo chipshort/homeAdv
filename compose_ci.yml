@@ -33,19 +33,18 @@ services:
             max-file: "2"
     networks:
         - default
-    # volumes:
-    # links:
-    #   - postgres
-#   postgres:
-#     build:
-#       context: .
-#       dockerfile: ./dockerfiles/postgres.dockerfile
-#     ports:
-#       - "54320:5432"
-#     environment:
-#       POSTGRES_USER: homeadv
-#       POSTGRES_PASSWORD: mD8pCKawDbZ3cZy
-#       TZ: "Europe/Berlin"
+    links:
+      - postgres
+  postgres:
+    build:
+      context: .
+      dockerfile: ./docker/postgres.dockerfile
+    networks:
+      - default
+    environment:
+      POSTGRES_USER: homeadv
+      POSTGRES_PASSWORD: mD8pCKawDbZ3cZy
+      TZ: "Europe/Berlin"
 
 networks:
     deploy:
