@@ -6,7 +6,7 @@ services:
     build:
       context: ./frontend
       dockerfile: ../docker/frontend.dockerfile
-      environment:
+    environment:
         - VIRTUAL_HOST=homeadv.fegies.me
         - LETSENCRYPT_HOST=homeadv.fegies.me
     logging:
