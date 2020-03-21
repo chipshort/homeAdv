@@ -12,5 +12,10 @@ export class ChallengeService {
     //TODO: in an ideal world this would be Observable and updated automatically once the next challenge comes out
   }
 
+  uploadChallengeResult(uploadedChallenge: Challenge, image: string) {
+    //TODO: upload image
+    alert(image);
+  }
+
   constructor() { }
 }
