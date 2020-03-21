@@ -112,3 +112,22 @@ pub fn create(
         }
     }
 }
+
+#[derive(Serialize)]
+pub struct ScoreResponse {
+    score: i32,
+}
+
+#[get("/")]
+pub fn get_score(
+	user_id: UserId,
+	con: MainDbCon,
+) -> Result<Json<ScoreResponse>, Box<dyn std::error::Error>> {
+	let row = con.0.execute("SELECT score FROM Person WHERE id = $1", &[&user_id.0],
+	)?;
+	
+	let res = ScoreResponse {
+		score: row.get(0),
+	};
+	Ok(Json(res))
+}
