@@ -2,6 +2,8 @@ use rocket::http::{Cookie, Cookies};
 use rocket::response::Response;
 use rocket_contrib::json::Json;
 
+use bcrypt::*;
+
 #[derive(Deserialize)]
 pub struct LoginRequest {
     username: String,
@@ -49,6 +51,7 @@ impl FromStr for UserId {
     }
 }
 
+use crate::MainDbCon;
 use rocket::outcome::IntoOutcome;
 use rocket::request;
 
@@ -64,11 +67,30 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserId {
 }
 
 #[post("/create", data = "<request>")]
-pub fn create(request: Json<AccountCreationRequest>, mut cookies: Cookies) -> Response {
-    let uid = 1;
-    cookies.add_private(Cookie::new("user_id", format!("{}", uid)));
+pub fn create(
+    request: Json<AccountCreationRequest>,
+    mut cookies: Cookies,
+    con: MainDbCon,
+) -> Result<Response, Box<dyn std::error::Error>> {
+    let pw = hash(&request.password, DEFAULT_COST)?;
+    let res = con.0.query(
+        "insert into Person (name, score, password) 
+        values ($1, $2, $3) returning id",
+        &[&request.username, &0, &pw],
+    );
+    match res {
+        Ok(rows) if rows.len() > 0 => {
+            let id: i32 = rows.get(0).get(0);
+            cookies.add_private(Cookie::new("user_id", format!("{}", id)));
 
-    let mut res = Response::new();
-    res.set_status(rocket::http::Status::new(204, "login successful"));
-    res
+            let mut res = Response::new();
+            res.set_status(rocket::http::Status::new(204, "login successful"));
+            Ok(res)
+        }
+        _ => {
+            let mut res = Response::new();
+            res.set_status(rocket::http::Status::new(400, "name already used"));
+            Ok(res)
+        }
+    }
 }
