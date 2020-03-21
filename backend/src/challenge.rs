@@ -19,3 +19,18 @@ pub fn get_challenge(user_id: UserId) -> Json<ChallengeResponse> {
     };
     Json(res)
 }
+
+use rocket::Data;
+use std::env;
+use uuid::Uuid;
+
+#[derive(Serialize)]
+pub struct UploadResponse {}
+
+#[post("/challenge", format = "plain", data = "<data>")]
+pub fn upload_result(user_id: UserId, data: Data) -> Result<Json<UploadResponse>, std::io::Error> {
+    let mut file = String::from("./data/");
+    tempfile.push(format!("{}", uuid::Uuid::new_v4()));
+    data.stream_to_file(&tempfile)?;
+    Ok(Json(UploadResponse {}))
+}

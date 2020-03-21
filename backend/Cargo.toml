@@ -11,3 +11,4 @@ rocket = { version = "0.4.4" }
 rocket_contrib = { version = "0.4.4", features = ["postgres_pool"] }
 serde = "*"
 serde_derive = "*"
+uuid = { version = "0.8.1", features = ["serde", "v4"] }
