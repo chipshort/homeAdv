@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {MAT_SNACK_BAR_DATA} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-errormessage',
@@ -6,9 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./errormessage.component.css']
 })
 export class ErrormessageComponent implements OnInit {
-  @Input() text: string;
-
-  constructor() { }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) { }
 
   ngOnInit(): void {
   }
