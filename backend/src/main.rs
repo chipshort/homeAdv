@@ -13,7 +13,7 @@ mod account;
 mod challenge;
 
 #[database("main_db")]
-struct MainDbCon(postgres::Connection);
+pub struct MainDbCon(postgres::Connection);
 
 #[get("/")]
 fn index() -> &'static str {
@@ -28,5 +28,6 @@ fn main() {
             routes![account::login, account::logout, account::create],
         )
         .mount("/rest/challenges", routes![challenge::get_challenge])
+        .attach(MainDbCon::fairing())
         .launch();
 }
