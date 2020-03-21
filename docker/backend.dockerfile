@@ -20,6 +20,7 @@ RUN cargo build
 FROM debian:sid-slim as backend
 
 WORKDIR /app
+RUN mkdir data
 
 ENV ROCKET_ENV=production
 

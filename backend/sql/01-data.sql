@@ -42,7 +42,7 @@
 	('Gedicht - thcideg', 'Schreiben', 'Schreibe ein Gedicht, Minimum 10 Zeilen - aber rückwärts! Lies es vor', ''),
 	('Brieffreunde', 'Schreiben', 'Schreibe einen Brief oder eine Postkarte an deine Oma, deinen Opa, ...', ''),
 	('Es war einmal ...', 'Basteln', 'Gestalte mit Gegenständen aus deiner Wohnung ein Foto, das ein Märchen darstellt.', ''),
-	('Let's Dance', 'Bewegung', 'Du hast doch bestimmt ein Lieblingslied! Tanz dazu.', ''),
+	('Let''s Dance', 'Bewegung', 'Du hast doch bestimmt ein Lieblingslied! Tanz dazu.', ''),
 	('Virtueller Sport', 'Bewegung', 'Finde eine Sportgruppe oder Videochatte mit deinen Freunden und macht gemeinsam Sport.', 'https://cdn.pixabay.com/photo/2017/05/26/20/18/marathon-2346948_1280.jpg'),
 	('Hände waschen', 'Video', 'Mache ein (lustiges) Video, wie du dir die Hände wäscht und du sagst, warum das wichtig ist.', 'https://live.staticflickr.com/8159/6963932022_8a243ccb35_k.jpg'),
 	('Kochchallenge', 'Kochen', 'Koche etwas mit nur drei Zutaten (Gewürze ausgenommen).', 'https://live.staticflickr.com/1915/44909179814_44123cb4ce_6k.jpg'),

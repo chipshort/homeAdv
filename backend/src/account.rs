@@ -59,13 +59,13 @@ pub enum AccountCreationError {
 use rocket::request::FromRequest;
 use std::str::FromStr;
 
-pub struct UserId(pub u32);
+pub struct UserId(pub i32);
 
 impl FromStr for UserId {
     type Err = <u32 as FromStr>::Err;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        u32::from_str(s).map(UserId)
+        i32::from_str(s).map(UserId)
     }
 }
 
