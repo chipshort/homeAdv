@@ -6,9 +6,9 @@ import { MOCK_IMAGE } from './mock.image';
 const MOCK_CHALLENGE: Challenge = {
   id: 28,
   title: 'Der Tassenturm',
-  topic: '?',
+  topic: 'Stapele 5 Tassen ohne das was kaputt geht.',
   image: MOCK_IMAGE,
-  description: 'Stapele 5 Tassen ohne, dass etwas kaputt geht',
+  description: 'Stapele 5 Tassen, ohne das was kaputt geht.',
 };
 
 @Injectable({
