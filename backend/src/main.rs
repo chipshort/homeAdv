@@ -4,8 +4,13 @@
 extern crate rocket;
 #[macro_use]
 extern crate rocket_contrib;
+#[macro_use]
+extern crate serde_derive;
 
 use rocket_contrib::databases::postgres;
+
+mod account;
+mod challenge;
 
 #[database("main_db")]
 struct MainDbCon(postgres::Connection);
@@ -16,5 +21,12 @@ fn index() -> &'static str {
 }
 
 fn main() {
-    rocket::ignite().mount("/rest/", routes![index]).launch();
+    rocket::ignite()
+        .mount("/rest/", routes![index])
+        .mount(
+            "/rest/account",
+            routes![account::login, account::logout, account::create],
+        )
+        .mount("/rest/challenges", routes![challenge::get_challenge])
+        .launch();
 }
