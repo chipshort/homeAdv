@@ -1,0 +1,22 @@
+<div role="main" class="content text-center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <img src="assets/icons/icon-512x512.png" class="fill-width" />
+    <mat-form-field appearance="fill">
+      <mat-label>Benutzername</mat-label>
+      <input matInput id="username" type="text" formControlName="username">
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Passwort</mat-label>
+      <input matInput id="password" type="password" formControlName="password">
+    </mat-form-field>
+    <br />
+    <button mat-raised-button color="primary" class="button" type="submit">Einloggen</button><br />
+
+    <div class="box">
+      <p>Noch kein Benutzerkonto?</p>
+      <a routerLink="/signup" mat-raised-button color="accent">Registrieren</a>
+    </div>
+
+  </form>
+</div>
