@@ -1,0 +1,50 @@
+
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/frontend.dockerfile
+      environment:
+        - VIRTUAL_HOST=homeadv.fegies.me
+        - LETSENCRYPT_HOST=homeadv.fegies.me
+    logging:
+        driver: json-file
+        options:
+            max-size: 10M
+            max-file: "2"
+      
+    networks:
+        - deploy
+    ports:
+      - "80:80"
+    links:
+      - backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/backend.dockerfile
+    logging:
+        driver: json-file
+        options:
+            max-size: 10M
+            max-file: "2"
+    # volumes:
+    # links:
+    #   - postgres
+#   postgres:
+#     build:
+#       context: .
+#       dockerfile: ./dockerfiles/postgres.dockerfile
+#     ports:
+#       - "54320:5432"
+#     environment:
+#       POSTGRES_USER: homeadv
+#       POSTGRES_PASSWORD: mD8pCKawDbZ3cZy
+#       TZ: "Europe/Berlin"
+
+networks:
+    deploy:
+        external:
+            name: easylean_deploys
