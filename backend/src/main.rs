@@ -40,7 +40,6 @@ fn main() {
                 verification::get_submission_picture
             ],
         )
-        .mount("/rest/challenges", routes![challenge::get_challenge])
         .mount("/rest/leaderboard", routes![leaderboard::get_leaderboard])
         .attach(MainDbCon::fairing())
         .launch();
