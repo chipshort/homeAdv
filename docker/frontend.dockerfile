@@ -9,7 +9,7 @@ COPY ./angular.json ./tsconfig.json ./tsconfig.app.json ./tsconfig.spec.json \
     ./ngsw-config.json ./
 COPY ./src ./src
 
-RUN npm run ng build
+RUN npm run ng build -- --prod
 
 RUN find dist/homeadventure -type f -exec gzip -k9 {} +
 
