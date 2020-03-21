@@ -2,6 +2,8 @@ FROM node:10-alpine as frontendFiles
 
 WORKDIR /build
 
+RUN apk add --no-cache python gcc g++ make
+
 COPY ./package.json ./package-lock.json ./
 RUN npm ci
 

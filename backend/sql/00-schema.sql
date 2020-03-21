@@ -14,6 +14,14 @@ create table Challenge(
 	picture text not null
 );
 
+create table ActiveChallenge (
+	challenge_id int not null,
+	person_id int not null primary key,
+	activation_ts timestamp not null,
+	foreign key(person_id) references Person(id),
+	foreign key(challenge_id) references Challenge(id)
+);
+
 create table ChallengeCompletion (
 	id serial not null primary key,
 	challenge_id int not null,

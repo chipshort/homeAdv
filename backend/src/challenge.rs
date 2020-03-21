@@ -1,28 +1,64 @@
 use crate::account::UserId;
 use crate::MainDbCon;
+use chrono::NaiveDateTime;
 use rocket_contrib::json::Json;
 
 #[derive(Serialize)]
 pub struct ChallengeResponse {
     id: i32,
     title: String,
-    topic: Option<String>,
-    image: Option<String>,
+    topic: String,
+    image: String,
     description: String,
 }
 
 #[get("/")]
-pub fn get_challenge(user_id: UserId, con: MainDbCon) -> Json<ChallengeResponse> {
-    // let c =
+pub fn get_challenge(
+    user_id: UserId,
+    con: MainDbCon,
+) -> Result<Json<ChallengeResponse>, Box<dyn std::error::Error>> {
+    con.0.execute(
+        "DELETE FROM ActiveChallenge where person_id = $1 and activation_ts < NOW() - interval '1 hour'",
+        &[&user_id.0],
+    )?;
+
+    let res = con.0.query(
+        "SELECT challenge_id from ActiveChallenge WHERE person_id = $1",
+        &[&user_id.0],
+    )?;
+
+    let rows;
+    if res.len() == 0 {
+        rows = con.0.query(
+            "SELECT id, title, topic, description, picture FROM Challenge ORDER BY RANDOM() LIMIT 1",
+            &[],
+        )?;
+        let id: i32 = rows.get(0).get(0);
+        println!("running insert");
+        con.0.execute(
+            "INSERT INTO ActiveChallenge (challenge_id, person_id, activation_ts)
+            VALUES ($1, $2, NOW())",
+            &[&id, &user_id.0],
+        )?;
+    } else {
+        let id: i32 = res.get(0).get(0);
+        rows = con.0.query(
+            "SELECT c.id, c.title, c.topic, c.description, c.picture from Challenge c
+            where c.id = $1",
+            &[&id],
+        )?;
+    }
+    println!("executing");
+    let row = rows.get(0);
 
     let res = ChallengeResponse {
-        id : 0,
-        title: "10 Löffel sind ein Haus".into(),
-        topic: Some("Spass".into()),
-        image: Some("https://as2.ftcdn.net/jpg/02/22/61/43/500_F_222614376_uyur5TG31C1NaKbyWmimI9NjXFlh6KRr.jpg".into()),
-        description: "Suche 10 Löffel und lege ein Haus".into(),
+        id: row.get(0),
+        title: row.get(1),
+        topic: row.get(2),
+        image: row.get(3),
+        description: row.get(4),
     };
-    Json(res)
+    Ok(Json(res))
 }
 
 use rocket::Data;
@@ -32,7 +68,7 @@ use uuid::Uuid;
 #[derive(Serialize)]
 pub struct UploadResponse {}
 
-#[post("/challenge/<challenge_id>", format = "plain", data = "<data>")]
+#[post("/<challenge_id>", format = "plain", data = "<data>")]
 pub fn upload_result(
     user_id: UserId,
     challenge_id: u32,
