@@ -22,7 +22,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const newReq = req.clone({
-      url: (!environment.production ? 'http://localhost:8000/rest' : '') + req.url,
+      url: (!environment.production ? 'http://localhost:8000' : '')  + '/rest' + req.url,
       withCredentials: true
     });
 
