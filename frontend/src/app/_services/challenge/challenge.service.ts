@@ -40,7 +40,9 @@ export class ChallengeService {
     const req = new HttpRequest('POST', '/challenge/' + uploadedChallenge.id, image, {
       reportProgress: true
     });
-    this.http.request(req);
+    this.http.request(req).subscribe(event => {
+      console.log(event);
+    });
 
     // const formData = new FormData();
     // formData.append(‘file’, image.data, this.fileToUpload.name);
@@ -50,8 +52,6 @@ export class ChallengeService {
     // });
 
     // this.http.post('/challenge/' + uploadedChallenge.id, {})
-
-    alert(image);
   }
 
   constructor(private http: HttpClient) { }
