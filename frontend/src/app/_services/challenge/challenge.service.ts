@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpRequest} from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import {Challenge} from '../../challenge';
@@ -25,9 +25,10 @@ export class ChallengeService {
     // });
     //
     // return subject;
-    return {
+    return { //TODO: replace with actual call
+        id: 0,
         title: 'Test',
-        categories: ['test'],
+        topic: 'test',
         image: '',
         description: 'Beschreibung'
       };
@@ -35,6 +36,13 @@ export class ChallengeService {
 
   uploadChallengeResult(uploadedChallenge: Challenge, image: ImageData) {
     // TODO: upload image
+    const req = new HttpRequest('POST', '/challenge/' + uploadedChallenge.id, image, {
+      reportProgress: true
+    });
+
+    this.http.request(req);
+
+    // this.http.post('/challenge/' + uploadedChallenge.id, {})
 
     alert(image);
 

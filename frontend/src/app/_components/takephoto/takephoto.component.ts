@@ -43,7 +43,8 @@ export class TakephotoComponent implements OnInit {
     const video: HTMLVideoElement = document.querySelector('.camera');
     const canvas: HTMLCanvasElement = document.querySelector('.photo');
     const context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0);
+    // context.drawImage(video, 0, 0);
+    context.fillRect(100, 100, 20, 20);
 
     const result = context.getImageData(0, 0, canvas.width, canvas.height); //canvas.toDataURL('image/png');
 
