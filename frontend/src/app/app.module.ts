@@ -16,7 +16,6 @@ import {HttpRequestInterceptor} from './httpRequestInterceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './_components/login/login.component';
 import {AuthService} from './_services/authentification/auth.service';
-import { SignupComponent } from './_components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { SignupComponent } from './_components/signup/signup.component';
     ChallengeComponent,
     TakephotoComponent,
     TestpageComponent,
-    LoginComponent,
-    SignupComponent
+    LoginComponent
   ],
   imports: [
     DemoMaterialModule,
