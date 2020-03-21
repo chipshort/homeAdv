@@ -37,8 +37,8 @@ pub fn get_challenge(
         let id: i32 = rows.get(0).get(0);
         println!("running insert");
         con.0.execute(
-            "INSERT INTO ActiveChallenge (challenge_id, person_id, activation_ts)
-            VALUES ($1, $2, NOW())",
+            "INSERT INTO ActiveChallenge (challenge_id, person_id, activation_ts, completed)
+            VALUES ($1, $2, NOW(), FALSE)",
             &[&id, &user_id.0],
         )?;
         completed = false;
