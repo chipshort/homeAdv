@@ -51,9 +51,10 @@ export class TakephotoComponent implements OnInit {
     // context.drawImage(video, 0, 0);
     context.fillRect(100, 100, 20, 20);
 
-    const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
-
-    this.challengeService.uploadChallengeResult(this.challenge, result);
-    this.router.navigate(['/verify']);
+    // const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
+    canvas.toBlob(blob => {
+      this.challengeService.uploadChallengeResult(this.challenge, blob);
+      this.router.navigate(['/verify']);
+    }, 'image/png');
   }
 }

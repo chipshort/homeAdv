@@ -34,13 +34,20 @@ export class ChallengeService {
       };
   }
 
-  uploadChallengeResult(uploadedChallenge: Challenge, image: ImageData) {
+  uploadChallengeResult(uploadedChallenge: Challenge, image: Blob) {
+    console.log(uploadedChallenge);
     // TODO: upload image
     const req = new HttpRequest('POST', '/challenge/' + uploadedChallenge.id, image, {
       reportProgress: true
     });
-
     this.http.request(req);
+
+    // const formData = new FormData();
+    // formData.append(‘file’, image.data, this.fileToUpload.name);
+    // this.http.post(“Your end-point URL”, formData).subscribe((val) => {
+    //
+    //   console.log(val);
+    // });
 
     // this.http.post('/challenge/' + uploadedChallenge.id, {})
 

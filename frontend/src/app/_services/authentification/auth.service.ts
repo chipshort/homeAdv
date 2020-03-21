@@ -43,7 +43,7 @@ export class AuthService {
           subject.next(true);
       },
       () => {
-        subject.error(false);
+        subject.next(false);
       });
 
     return subject;
@@ -59,7 +59,7 @@ export class AuthService {
         subject.next(true);
       },
       () => {
-        subject.error(false);
+        subject.next(false);
       });
 
     return subject;
@@ -82,7 +82,7 @@ export class AuthService {
         subject.next(true);
       },
       () => {
-        subject.error(false);
+        subject.next(false);
       });
 
     return subject;

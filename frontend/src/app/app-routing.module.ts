@@ -9,7 +9,7 @@ import {ThanksComponent} from './_components/thanks/thanks.component';
 import {ChallengeService} from './_services/challenge/challenge.service';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent}, //in production hier DochallengeComponent
+  {path: '', component: TestpageComponent}, //LoginComponent in production hier DochallengeComponent
   {path: 'login', component: LoginComponent},
   {path: 'verify', component: VerificationComponent},
   {path: 'thanks', component: ThanksComponent},

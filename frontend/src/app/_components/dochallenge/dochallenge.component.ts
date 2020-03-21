@@ -16,7 +16,10 @@ export class DochallengeComponent implements OnInit {
   constructor(private challengeService: ChallengeService) { }
 
   ngOnInit(): void {
-    this.challengeService.getChallenge().subscribe((challenge: Challenge) => this.challenge = challenge);
+    this.challengeService.getChallenge().subscribe((challenge: Challenge) => {
+      this.challenge = challenge;
+      console.log(challenge);
+    });
   }
 
 }
