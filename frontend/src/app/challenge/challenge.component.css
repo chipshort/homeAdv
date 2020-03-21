@@ -1,0 +1,13 @@
+.img-responsive {
+  width: 80%;
+  /*max-width: 500px;*/
+  height: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}

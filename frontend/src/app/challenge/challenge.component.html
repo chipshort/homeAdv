@@ -1,0 +1,12 @@
+<div class="content" role="main">
+  <div class="text-center">
+    <h1>{{ challenge.title }}</h1>
+    <img src="{{challenge.image}}" class="img-responsive" />
+
+    <p>{{challenge.description}}</p>
+
+<!--    TODO: Not very nice-->
+<!--    <p><input type="file" accept="image/*" capture="environment" /></p>-->
+  </div>
+  <a routerLink="/challenge/takephoto" mat-fab aria-label="Challenge beendet" color="primary" class="floating-action-button" ><mat-icon>camera_alt</mat-icon></a>
+</div>
