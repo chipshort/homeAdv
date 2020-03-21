@@ -7,6 +7,9 @@ import {Subject} from 'rxjs/internal/Subject';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Used to the user's score
+ */
 export class ScoreService {
 
   constructor(private http: HttpClient) { }

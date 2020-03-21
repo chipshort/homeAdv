@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './thanks.component.html',
   styleUrls: ['./thanks.component.css']
 })
+/**
+ * The page shown after verifying a challenge.
+ */
 export class ThanksComponent implements OnInit {
 
   constructor() { }
