@@ -1,12 +1,13 @@
 create table Person(
 	name varchar(50),
-	id int primary key,
+	id int auto_increment primary key,
 	score integer,
 	password varchar(100)
 );
-create table Challenges(
+create table Challenge(
 	title varchar(100),
-	challenge_id int primary key,
+	challenge_id int auto_increment primary key,
+	topic varchar(50),
 	description text,
 	picture text,
 	begin time,
@@ -17,7 +18,7 @@ create table Currently_Running(
 	challenge_id int,
 	primary key(id, challenge_id),
 	foreign key(id) references Person(id),
-	foreign key(challenge_id) references Challenges(challenge_id),
+	foreign key(challenge_id) references Challenge(challenge_id),
 	status text,
 	submit varchar(50)
 );
@@ -25,9 +26,9 @@ create table Verification{
 	id int,
 	challenge_id int,
 	verificator_id int,
-	primary key (id, challeng_id, verificator_id),
+	primary key (id, challenge_id, verificator_id),
 	foreign key(id) references Person(id),
-	foreign key(challenge_id) references Challenges(challenge_id),
-	foreign key(verificator_id) references Challenges(verificator_id),
+	foreign key(challenge_id) references Challenge(challenge_id),
+	foreign key(verificator_id) references Person(id),
 	status text
 );
