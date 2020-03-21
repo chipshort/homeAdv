@@ -6,6 +6,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 @Injectable()
+/**
+ * Used to authenticate the user (login, signup, etc.)
+ */
 export class AuthService {
 
   private loggedIn = null;

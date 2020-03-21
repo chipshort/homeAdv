@@ -7,6 +7,9 @@ import {ChallengeService} from '../../_services/challenge/challenge.service';
   templateUrl: './testpage.component.html',
   styleUrls: ['./testpage.component.css']
 })
+/**
+ * A simple page to test some stuff, not used in production
+ */
 export class TestpageComponent implements OnInit {
 
   constructor(private challengeService: ChallengeService) { }
