@@ -6,10 +6,10 @@ import { Challenge } from '../../challengetype';
 
 @Component({
   selector: 'app-challenge',
-  templateUrl: './challenge.component.html',
-  styleUrls: ['./challenge.component.css']
+  templateUrl: './dochallenge.component.html',
+  styleUrls: ['./dochallenge.component.css']
 })
-export class ChallengeComponent implements OnInit {
+export class DochallengeComponent implements OnInit {
   challenge: Challenge;
 
   constructor(private challengeService: ChallengeService) { }

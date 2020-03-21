@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { ChallengeComponent } from './_components/challenge/challenge.component';
+import { DochallengeComponent } from './_components/dochallenge/dochallenge.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {DemoMaterialModule} from '../material-module';
@@ -16,14 +16,16 @@ import {HttpRequestInterceptor} from './httpRequestInterceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './_components/login/login.component';
 import {AuthService} from './_services/authentification/auth.service';
+import { VerificationComponent } from './_components/verification/verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChallengeComponent,
+    DochallengeComponent,
     TakephotoComponent,
     TestpageComponent,
-    LoginComponent
+    LoginComponent,
+    VerificationComponent
   ],
   imports: [
     DemoMaterialModule,

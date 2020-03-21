@@ -28,14 +28,22 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData.username, loginData.password).subscribe(success => {
       if (success) {
         this.router.navigate(['/challenge']);
+      } else {
+        //TODO: show error!
       }
     });
-
-    console.warn('logging in', loginData);
   }
 
-  onSignup(loginData) {
-    // this.authService.signup(loginData.username, loginData.password)
+  onSignup() {
+    // Process checkout data here
+    this.authService.signup(this.loginForm.get('username').value, this.loginForm.get('password').value, 0).subscribe(success => {
+      if (success) {
+        this.router.navigate(['/challenge']);
+      } else {
+        //TODO: show error
+      }
+    });
+    this.loginForm.reset();
   }
 
 }

@@ -29,6 +29,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     const subject: Subject<boolean> = new Subject();
+    this.clearUserData();
 
     this.http.post(
       '/account/login',
@@ -43,8 +44,46 @@ export class AuthService {
       },
       () => {
         subject.error(false);
+      });
+
+    return subject;
+  }
+
+  logout() {
+    this.clearUserData();
+    const subject: Subject<boolean> = new Subject();
+
+    this.http.post('/account/logout', {}).subscribe(
+      () => {
+        this.loggedIn = false;
+        subject.next(true);
+      },
+      () => {
+        subject.error(false);
+      });
+
+    return subject;
+  }
+
+  signup(username: string, password: string, age: number) {
+    const subject: Subject<boolean> = new Subject();
+    this.clearUserData();
+
+    this.http.post(
+      '/account/create',
+      {
+        username,
+        password,
+        age
       }
-    );
+    ).subscribe(
+      () => {
+        this.loggedIn = true;
+        subject.next(true);
+      },
+      () => {
+        subject.error(false);
+      });
 
     return subject;
   }
