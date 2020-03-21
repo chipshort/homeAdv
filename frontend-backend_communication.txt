@@ -1,0 +1,43 @@
+
+
+frontend (FE) = UI ?
+backend  (BE) = server ?
+
+
+# mögliche Events, die Kommunikation zwischen FE and BE triggern:
+account anlegen
+login
+challenge bewerten
+challenge aufnehmen und abschließen (picture, video)
+leaderboard abrufen
+
+
+# Event: Account anlegen
+frontend sendet Nutzerdaten (Name, PW, Standort, Kategorie)
+backend sendet feedback (failure/success) (-> login page)
+
+# Event: login
+frontend sendet Zugangsdaten (username, pw)
+backend antwortet mit access allowed/denied (-> start screen)
+
+# Event: Challenge bewerten
+frontend fragt nach challenge zum bewerten
+backend sendet abgeschlossene challenge (picture, video, audio)
+frontend sendet Ergebnis (approved/denied)
+if approved: backend sortiert challenge ins leaderboard
+
+# Event: Challenge abschließen
+frontend fragt nach media Zugriff (microfone, camera)
+frontend sendet media (picture, audio, video)
+backend prüft geofence verification
+backend speichert aufgenommene challenge in Datenbank für approval
+nach Bewertung: backend sendet Ergebnis (approved/denied, score)
+
+# Event: leaderboard abrufen
+frontend fragt nach leaderboard
+backend sendet leaderbord
+
+
+
+
+
