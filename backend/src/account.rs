@@ -80,6 +80,18 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserId {
         req.cookies()
             .get_private("user_id")
             .and_then(|c| c.value().parse().ok())
+            .and_then(|c: UserId| {
+                let con = MainDbCon::from_request(req).succeeded()?;
+                let r = con
+                    .0
+                    .query("SELECT EXISTS(SELECT 1 from Person where id = $1)", &[&c.0])
+                    .ok()?;
+                if r.get(0).get(0) {
+                    Some(c)
+                } else {
+                    None
+                }
+            })
             .into_outcome((rocket::http::Status::new(401, "you are not logged in"), ()))
     }
 }
