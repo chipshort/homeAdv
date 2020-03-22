@@ -128,10 +128,10 @@ pub fn create(
 #[derive(Serialize)]
 pub struct ScoreResponse {
     score: i32,
-    rank: i32,
+    rank: i64,
 }
 
-#[get("/")]
+#[get("/score")]
 pub fn get_score(
     user_id: UserId,
     con: MainDbCon,

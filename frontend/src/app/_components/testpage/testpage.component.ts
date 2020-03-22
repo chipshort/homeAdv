@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Challenge} from '../../challenge';
-import {ChallengeService} from '../../_services/challenge/challenge.service';
+import { Challenge } from '../../challenge';
+import { ChallengeService } from '../../_services/challenge/challenge.service';
+import { ScoreService } from 'src/app/_services/account/score.service';
 
 @Component({
   selector: 'app-testpage',
@@ -12,9 +13,19 @@ import {ChallengeService} from '../../_services/challenge/challenge.service';
  */
 export class TestpageComponent implements OnInit {
 
-  constructor(private challengeService: ChallengeService) { }
+  constructor(private challengeService: ChallengeService, private scoreService: ScoreService) { }
+
+  public score_score: number;
+  public score_rank: number;
 
   ngOnInit(): void {
+  }
+
+  onScoreClicked(): void {
+    this.scoreService.getScore().subscribe(r => {
+      this.score_score = r.score;
+      this.score_rank = r.rank;
+    });
   }
 
   onTestClicked() {
