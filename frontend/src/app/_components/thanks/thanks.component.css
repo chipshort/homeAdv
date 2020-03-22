@@ -1,0 +1,12 @@
+.stretch {
+  width: 100%;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 1em;
+}
+
+.text-center {
+  transform-style: preserve-3d;
+}

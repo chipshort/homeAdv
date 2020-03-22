@@ -80,6 +80,18 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserId {
         req.cookies()
             .get_private("user_id")
             .and_then(|c| c.value().parse().ok())
+            .and_then(|c: UserId| {
+                let con = MainDbCon::from_request(req).succeeded()?;
+                let r = con
+                    .0
+                    .query("SELECT EXISTS(SELECT 1 from Person where id = $1)", &[&c.0])
+                    .ok()?;
+                if r.get(0).get(0) {
+                    Some(c)
+                } else {
+                    None
+                }
+            })
             .into_outcome((rocket::http::Status::new(401, "you are not logged in"), ()))
     }
 }
@@ -90,7 +102,7 @@ pub fn create(
     mut cookies: Cookies,
     con: MainDbCon,
 ) -> Result<Response, Box<dyn std::error::Error>> {
-    let pw = hash(&request.password, DEFAULT_COST)?;
+    let pw = hash(&request.password, 10)?;
     let res = con.0.query(
         "insert into Person (name, score, password) 
         values ($1, $2, $3) returning id",
@@ -120,14 +132,15 @@ pub struct ScoreResponse {
 
 #[get("/")]
 pub fn get_score(
-	user_id: UserId,
-	con: MainDbCon,
+    user_id: UserId,
+    con: MainDbCon,
 ) -> Result<Json<ScoreResponse>, Box<dyn std::error::Error>> {
-	let row = con.0.execute("SELECT score FROM Person WHERE id = $1", &[&user_id.0],
-	)?;
-	
-	let res = ScoreResponse {
-		score: row.get(0),
-	};
-	Ok(Json(res))
+    let row = con
+        .0
+        .query("SELECT score FROM Person WHERE id = $1", &[&user_id.0])?;
+
+    let res = ScoreResponse {
+        score: row.get(0).get(0),
+    };
+    Ok(Json(res))
 }

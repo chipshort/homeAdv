@@ -18,6 +18,7 @@ create table ActiveChallenge (
 	challenge_id int not null,
 	person_id int not null primary key,
 	activation_ts timestamp not null,
+	completed boolean not null,
 	foreign key(person_id) references Person(id),
 	foreign key(challenge_id) references Challenge(id)
 );
@@ -49,5 +50,5 @@ create table Verification (
 	primary key (verificator_id, completion_id),
 	foreign key(completion_id) references ChallengeCompletion(id) on delete cascade,
 	foreign key(verificator_id) references Person(id),
-	status int not null -- negative denied positive accepted
+	status boolean not null -- negative denied positive accepted
 );

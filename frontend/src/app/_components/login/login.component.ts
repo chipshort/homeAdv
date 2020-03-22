@@ -29,20 +29,28 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
     this.authService.login(loginData.username, loginData.password).subscribe(success => {
       if (success) {
-        this.router.navigate(['/challenge']);
+        this.router.navigate(['/challenge']); // weiter zu challenge
       } else {
-        this.snackBar.openFromComponent(ErrormessageComponent);
+        // Fehlermeldung
+        this.snackBar.openFromComponent(ErrormessageComponent, {
+          duration: 10000,
+          data: 'Fehler beim Einloggen'
+        });
       }
     });
   }
 
   onSignup() {
-    // Process checkout data here
+    // Registrieren
     this.authService.signup(this.loginForm.get('username').value, this.loginForm.get('password').value, 0).subscribe(success => {
       if (success) {
-        this.router.navigate(['/challenge']);
+        this.router.navigate(['/challenge']); // weiter zu challenge
       } else {
-        //TODO: show error
+        // Fehlermeldung
+        this.snackBar.openFromComponent(ErrormessageComponent, {
+          duration: 10000,
+          data: 'Fehler beim Registrieren'
+        });
       }
     });
     this.loginForm.reset();
