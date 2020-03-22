@@ -1,5 +1,7 @@
 use crate::account::UserId;
 use crate::MainDbCon;
+use rocket::http::Status;
+use rocket::response::Response;
 use rocket_contrib::json::Json;
 
 #[derive(Serialize)]
@@ -74,11 +76,49 @@ pub struct UploadResponse {}
 #[post("/<challenge_id>", format = "any", data = "<data>")]
 pub fn upload_result(
     user_id: UserId,
-    challenge_id: u32,
+    challenge_id: i32,
+    con: MainDbCon,
     data: Data,
-) -> Result<Json<UploadResponse>, std::io::Error> {
-    let mut file = String::from("./data/");
-    file.push_str(&format!("{}", Uuid::new_v4()));
+) -> Result<Response<'static>, Box<dyn std::error::Error>> {
+    let uuid = format!("{}", Uuid::new_v4());
+    let file = format!("./data/{}", &uuid);
+
+    let transaction = con.0.transaction()?;
+
+    let res = transaction.query(
+        "SELECT completed, challenge_id from ActiveChallenge where person_id = $1",
+        &[&user_id.0],
+    )?;
+
+    let mut resp = Response::new();
+    if res.len() < 1 || res.get(0).get::<usize, bool>(0) != false {
+        resp.set_status(Status::new(403, "You may not complete a Challenge twice"));
+        return Ok(resp);
+    }
+
+    let challenge_id_db: i32 = res.get(0).get(1);
+    if challenge_id_db != challenge_id {
+        resp.set_status(Status::new(
+            403,
+            "You may not complete an inactive challenge",
+        ));
+        return Ok(resp);
+    }
+
+    transaction.execute(
+        "INSERT INTO ChallengeCompletion (challenge_id, person_id, image_uuid)
+        VALUES ($1, $2, $3)",
+        &[&challenge_id, &user_id.0, &uuid],
+    )?;
+    transaction.execute(
+        "UPDATE ActiveChallenge SET completed = TRUE 
+        where challenge_id = $1 and person_id  = $2",
+        &[&challenge_id, &user_id.0],
+    )?;
+
     data.stream_to_file(file)?;
-    Ok(Json(UploadResponse {}))
+
+    transaction.commit()?;
+    resp.set_status(Status::new(204, "Challenge completion successful"));
+    Ok(resp)
 }
