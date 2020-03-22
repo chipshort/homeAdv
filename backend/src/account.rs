@@ -90,7 +90,7 @@ pub fn create(
     mut cookies: Cookies,
     con: MainDbCon,
 ) -> Result<Response, Box<dyn std::error::Error>> {
-    let pw = hash(&request.password, DEFAULT_COST)?;
+    let pw = hash(&request.password, 10)?;
     let res = con.0.query(
         "insert into Person (name, score, password) 
         values ($1, $2, $3) returning id",
