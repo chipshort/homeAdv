@@ -6,16 +6,18 @@ import {TestpageComponent} from './_components/testpage/testpage.component';
 import {LoginComponent} from './_components/login/login.component';
 import {VerificationComponent} from './_components/verification/verification.component';
 import {ThanksComponent} from './_components/thanks/thanks.component';
-import {ChallengeService} from './_services/challenge/challenge.service';
+import {VerificationGuard} from './_guards/verification.guard';
+import {ChallengedoneComponent} from './_components/challengedone/challengedone.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent}, // in production hier DochallengeComponent
   {path: 'login', component: LoginComponent},
-  {path: 'verify', component: VerificationComponent},
+  {path: 'verify', canActivate: [VerificationGuard], component: VerificationComponent},
   {path: 'thanks', component: ThanksComponent},
   {path: 'challenge', component: DochallengeComponent},
   {path: 'challenge/takephoto/:id', component: TakephotoComponent},
-  {path: 'testpage', component: TestpageComponent}
+  {path: 'challengedone', component: ChallengedoneComponent},
+  // {path: 'testpage', component: TestpageComponent},
 ];
 
 @NgModule({

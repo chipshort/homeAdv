@@ -1,12 +1,18 @@
 .stretch {
+  margin: 0;
   width: 100%;
+}
+
+.vert-center {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  resize: vertical;
 }
 
 .bottom {
   position: absolute;
   bottom: 1em;
-}
-
-.text-center {
-  transform-style: preserve-3d;
 }

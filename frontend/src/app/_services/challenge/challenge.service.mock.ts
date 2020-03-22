@@ -9,6 +9,7 @@ const MOCK_CHALLENGE: Challenge = {
   topic: 'Stapele 5 Tassen ohne das was kaputt geht.',
   image: MOCK_IMAGE,
   description: 'Stapele 5 Tassen, ohne das was kaputt geht.',
+  completed: false,
 };
 
 @Injectable({

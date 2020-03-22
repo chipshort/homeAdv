@@ -1,10 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-/*html, body { height: 100%; }*/
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  margin: 0; height: 99vh;
+  width: 100vw;
+}
+body {
+  display: inline-block;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .content {
-  margin: 1em;
+  display: inline-block;
+  margin: 0 1em;
   height: 100%;
 }
 

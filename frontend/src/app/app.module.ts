@@ -19,6 +19,7 @@ import { VerificationComponent } from './_components/verification/verification.c
 import { AuthService } from './_services/authentification/auth.service';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
+import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ChallengeServiceMock } from './_services/challenge/challenge.service.mo
     VerificationComponent,
     ThanksComponent,
     ErrormessageComponent,
+    ChallengedoneComponent,
   ],
   imports: [
     DemoMaterialModule,
@@ -44,7 +46,7 @@ import { ChallengeServiceMock } from './_services/challenge/challenge.service.mo
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
-    { provide: ChallengeService, useClass: ChallengeServiceMock },
+    // { provide: ChallengeService, useClass: ChallengeServiceMock },
   ],
   bootstrap: [AppComponent],
 })
