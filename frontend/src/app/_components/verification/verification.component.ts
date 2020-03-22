@@ -27,11 +27,11 @@ export class VerificationComponent implements OnInit {
   }
 
   onCorrect() {
-    this.challengeService.verifyChallenge(this.verification, true).subscribe(r => this.router.navigate(['/challenge']));
+    this.challengeService.verifyChallenge(this.verification, true).subscribe(r => this.router.navigate(['/thanks']));
   }
 
   onIncorrect() {
-    this.challengeService.verifyChallenge(this.verification, false).subscribe(r => this.router.navigate(['/challenge']));
+    this.challengeService.verifyChallenge(this.verification, false).subscribe(r => this.router.navigate(['/thanks']));
   }
 
 }
