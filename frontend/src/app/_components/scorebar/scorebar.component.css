@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.score:not(:last-child) {
+  border-right: 1px solid #6f6c5f;
+}
+
+.dp,
+.done,
+.ranking {
+  font-size: 30pt;
+}
+
+.text-right {
+  text-align: right;
+}
