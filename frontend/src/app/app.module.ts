@@ -50,7 +50,7 @@ import { ScorebarComponent } from './_components/scorebar/scorebar.component';
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
-    // { provide: ChallengeService, useClass: ChallengeServiceMock },
+    { provide: ChallengeService, useClass: ChallengeServiceMock },
   ],
   bootstrap: [AppComponent],
 })
