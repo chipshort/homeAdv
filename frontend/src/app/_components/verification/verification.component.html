@@ -6,10 +6,12 @@
 
     <p>{{verification.challenge_description}}</p>
   </div>
-  <button mat-fab aria-label="Richtig" color="primary" class="floating-action-button left">
+  <button mat-fab aria-label="Richtig" color="primary" class="floating-action-button left"
+          (click)="onCorrect()">
     <mat-icon>done</mat-icon>
   </button>
-  <button mat-fab aria-label="Falsch" color="warn" class="floating-action-button right">
+  <button mat-fab aria-label="Falsch" color="warn" class="floating-action-button right"
+          (click)="onIncorrect()">
     <mat-icon>cancel</mat-icon>
   </button>
 </div>

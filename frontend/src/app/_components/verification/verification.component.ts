@@ -26,4 +26,12 @@ export class VerificationComponent implements OnInit {
     });
   }
 
+  onCorrect() {
+    this.challengeService.verifyChallenge(this.verification, true).subscribe(r => this.router.navigate(['/challenge']));
+  }
+
+  onIncorrect() {
+    this.challengeService.verifyChallenge(this.verification, false).subscribe(r => this.router.navigate(['/challenge']));
+  }
+
 }

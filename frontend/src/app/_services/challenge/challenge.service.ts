@@ -22,6 +22,13 @@ export class ChallengeService {
     return this.http.get<Verification>('/verification');
   }
 
+  verifyChallenge(verification: Verification, correct: boolean) {
+    return this.http.post('/verification/completion/rate', {
+      completion_id: verification.completion_id,
+      verification_result: correct,
+    });
+  }
+
   uploadChallengeResult(challengeId: string, image: Blob) {
     // console.log('Uploading ' + challengeId);
     const req = new HttpRequest('POST', '/challenges/' + challengeId, image, {
