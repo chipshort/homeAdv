@@ -20,6 +20,7 @@ import { AuthService } from './_services/authentification/auth.service';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
 import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
+import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LeaderboardComponent } from './_components/leaderboard/leaderboard.comp
     ThanksComponent,
     ErrormessageComponent,
     LeaderboardComponent,
+    ChallengedoneComponent,
   ],
   imports: [
     DemoMaterialModule,
@@ -46,7 +48,7 @@ import { LeaderboardComponent } from './_components/leaderboard/leaderboard.comp
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
-    { provide: ChallengeService, useClass: ChallengeServiceMock },
+    // { provide: ChallengeService, useClass: ChallengeServiceMock },
   ],
   bootstrap: [AppComponent],
 })

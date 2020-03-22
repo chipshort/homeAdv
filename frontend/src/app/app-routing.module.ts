@@ -8,6 +8,7 @@ import { VerificationComponent } from './_components/verification/verification.c
 import { ThanksComponent } from './_components/thanks/thanks.component';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
+import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, // in production hier DochallengeComponent
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'challenge', component: DochallengeComponent },
   { path: 'challenge/takephoto/:id', component: TakephotoComponent },
   { path: 'testpage', component: TestpageComponent },
-  { path: 'leaderboard', component: LeaderboardComponent }
+  { path: 'leaderboard', component: LeaderboardComponent },
+  { path: 'challengedone', component: ChallengedoneComponent },
 ];
 
 @NgModule({

@@ -1,10 +1,9 @@
 import {HttpClient, HttpRequest} from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
-import {Challenge} from '../../challenge';
-import {Observable} from 'rxjs';
-import {Subject} from 'rxjs/internal/Subject';
-import {Verification} from '../../verification';
+import { Challenge } from '../../challenge';
+import { Verification } from '../../verification';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +15,7 @@ import {Verification} from '../../verification';
 export class ChallengeService {
 
   getChallenge() {
-    return this.http.get<Challenge>('/challenges');
+    return this.http.get<Challenge>('/challenges').pipe(map(c => c.completed ? null : c));
   }
 
   getChallengeToVerify() {

@@ -31,8 +31,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse)  {
           if (error.status === 401) {
             this.authService.clearAndNavigateToLogin();
-          } else if (error.status === 404) {
-            this.router.navigate(['/404']);
           } else {
             // this.errorService.throwNetworkError(error.status);
           }

@@ -4,4 +4,5 @@ export interface Challenge {
   topic: string;
   image: string;
   description: string;
+  completed: boolean;
 }
