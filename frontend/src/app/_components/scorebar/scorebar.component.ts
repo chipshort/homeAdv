@@ -5,14 +5,12 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-scorebar',
   templateUrl: './scorebar.component.html',
-  styleUrls: ['./scorebar.component.scss']
+  styleUrls: ['./scorebar.component.css']
 })
 export class ScorebarComponent implements OnInit {
   private scoreSubscription: Subscription;
 
-  // TODO: wuerfelda: Mocked for now.
   public dps = 0;
-  public doneCount = 0;
   public ranking = 51;
 
   constructor(private scoreService: ScoreService) { }
