@@ -43,10 +43,8 @@ export class TakephotoComponent implements OnInit {
       const video: HTMLVideoElement = document.querySelector('.camera');
       const canvas: HTMLCanvasElement = document.querySelector('.photo');
       video.srcObject = stream;
-      video.addEventListener('loadedmetadata', _ => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-      });
+      canvas.width = video.clientWidth;
+      canvas.height = video.clientHeight;
     } catch (err) {
       // Fehlermeldung
       this.snackBar.openFromComponent(ErrormessageComponent, {
@@ -61,7 +59,7 @@ export class TakephotoComponent implements OnInit {
     const canvas: HTMLCanvasElement = document.querySelector('.photo');
     const context = canvas.getContext('2d');
     video.pause();
-    context.drawImage(video, 0, 0);
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     canvas.toBlob(blob => {
       this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
