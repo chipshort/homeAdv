@@ -23,24 +23,12 @@ export class ChallengeService {
     return this.http.get<Verification>('/verification');
   }
 
-  uploadChallengeResult(uploadedChallenge: Challenge, image: Blob) {
-    console.log(uploadedChallenge);
-    // TODO: finish image upload
-    const req = new HttpRequest('POST', '/challenges/' + uploadedChallenge.id, image, {
+  uploadChallengeResult(challengeId: string, image: Blob) {
+    // console.log('Uploading ' + challengeId);
+    const req = new HttpRequest('POST', '/challenges/' + challengeId, image, {
       reportProgress: true
     });
-    this.http.request(req).subscribe(event => {
-      console.log(event);
-    });
-
-    // const formData = new FormData();
-    // formData.append(‘file’, image.data, this.fileToUpload.name);
-    // this.http.post(“Your end-point URL”, formData).subscribe((val) => {
-    //
-    //   console.log(val);
-    // });
-
-    // this.http.post('/challenge/' + uploadedChallenge.id, {})
+    return this.http.request(req);
   }
 
   constructor(private http: HttpClient) { }

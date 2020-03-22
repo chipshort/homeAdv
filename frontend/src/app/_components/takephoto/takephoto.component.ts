@@ -4,6 +4,8 @@ import {Challenge} from '../../challenge';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
+import {ErrormessageComponent} from '../errormessage/errormessage.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-takephoto',
@@ -17,12 +19,17 @@ export class TakephotoComponent implements OnInit {
     facingMode: 'environment'
   };
 
-  challenge: Challenge;
+  challengeId: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private challengeService: ChallengeService) { }
+  constructor(private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute,
+              private router: Router, private challengeService: ChallengeService) { }
 
   public ngOnInit(): void {
-    this.challenge = window.history.state;
+    // this component gets the challenge as a parameter from the previous component
+    this.activatedRoute.params.subscribe(params => {
+      this.challengeId = params.id;
+      console.log(this.challengeId);
+    });
 
     navigator.mediaDevices.enumerateDevices()
       .then(md => {
@@ -38,9 +45,11 @@ export class TakephotoComponent implements OnInit {
       video.srcObject = stream;
       /* use the stream */
     } catch (err) {
-      // if (err instanceof )
-      alert(err);
-      /* TODO: handle the error */
+      // Fehlermeldung
+      this.snackBar.openFromComponent(ErrormessageComponent, {
+        duration: 2000,
+        data: 'Fehler beim initialisieren der Kamera: ' + err,
+      });
     }
   }
 
@@ -52,8 +61,9 @@ export class TakephotoComponent implements OnInit {
 
     // const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
     canvas.toBlob(blob => {
-      this.challengeService.uploadChallengeResult(this.challenge, blob);
-      this.router.navigate(['/verify']);
+      this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
+        this.router.navigate(['/verify']);
+      });
     }, 'image/png');
   }
 }
