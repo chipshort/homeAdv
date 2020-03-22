@@ -11,6 +11,7 @@ use rocket_contrib::databases::postgres;
 
 mod account;
 mod challenge;
+mod database_adaptions;
 mod leaderboard;
 mod verification;
 

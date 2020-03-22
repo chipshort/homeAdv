@@ -128,6 +128,7 @@ pub fn create(
 #[derive(Serialize)]
 pub struct ScoreResponse {
     score: i32,
+    rank: i32,
 }
 
 #[get("/")]
@@ -138,9 +139,13 @@ pub fn get_score(
     let row = con
         .0
         .query("SELECT score FROM Person WHERE id = $1", &[&user_id.0])?;
-
+    let row1 = con.0.query(
+        "SELECT count(id) FROM Person WHERE score >= (SELECT score FROM Person WHERE id = $1)",
+        &[&user_id.0],
+    )?;
     let res = ScoreResponse {
         score: row.get(0).get(0),
+        rank: row1.get(0).get(0),
     };
     Ok(Json(res))
 }

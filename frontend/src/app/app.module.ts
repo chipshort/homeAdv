@@ -19,6 +19,7 @@ import { VerificationComponent } from './_components/verification/verification.c
 import { AuthService } from './_services/authentification/auth.service';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
+import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
 import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
 import { ScorebarComponent } from './_components/scorebar/scorebar.component';
 
@@ -32,6 +33,7 @@ import { ScorebarComponent } from './_components/scorebar/scorebar.component';
     VerificationComponent,
     ThanksComponent,
     ErrormessageComponent,
+    LeaderboardComponent,
     ChallengedoneComponent,
     ScorebarComponent,
   ],
@@ -52,4 +54,4 @@ import { ScorebarComponent } from './_components/scorebar/scorebar.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
