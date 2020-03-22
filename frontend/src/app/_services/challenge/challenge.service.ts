@@ -31,9 +31,7 @@ export class ChallengeService {
 
   uploadChallengeResult(challengeId: string, image: Blob) {
     // console.log('Uploading ' + challengeId);
-    const req = new HttpRequest('POST', '/challenges/' + challengeId, image, {
-      reportProgress: true
-    });
+    const req = new HttpRequest('POST', '/challenges/' + challengeId, image);
     return this.http.request(req);
   }
 

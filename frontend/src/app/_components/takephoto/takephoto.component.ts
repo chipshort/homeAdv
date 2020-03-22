@@ -41,9 +41,12 @@ export class TakephotoComponent implements OnInit {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: this.videoOptions});
       const video: HTMLVideoElement = document.querySelector('.camera');
-      const tracks = stream.getVideoTracks();
+      const canvas: HTMLCanvasElement = document.querySelector('.photo');
       video.srcObject = stream;
-      /* use the stream */
+      video.addEventListener('loadedmetadata', _ => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+      });
     } catch (err) {
       // Fehlermeldung
       this.snackBar.openFromComponent(ErrormessageComponent, {
@@ -60,7 +63,6 @@ export class TakephotoComponent implements OnInit {
     video.pause();
     context.drawImage(video, 0, 0);
 
-    // const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
     canvas.toBlob(blob => {
       this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
         this.router.navigate(['/verify']).then(v => location.reload()); // need to reload because of some weird display bug
