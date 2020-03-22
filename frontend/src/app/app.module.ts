@@ -19,6 +19,7 @@ import { VerificationComponent } from './_components/verification/verification.c
 import { AuthService } from './_services/authentification/auth.service';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
+import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ChallengeServiceMock } from './_services/challenge/challenge.service.mo
     VerificationComponent,
     ThanksComponent,
     ErrormessageComponent,
+    LeaderboardComponent,
   ],
   imports: [
     DemoMaterialModule,
@@ -48,4 +50,4 @@ import { ChallengeServiceMock } from './_services/challenge/challenge.service.mo
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

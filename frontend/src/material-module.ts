@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 // import {A11yModule} from '@angular/cdk/a11y';
 // import {DragDropModule} from '@angular/cdk/drag-drop';
 // import {PortalModule} from '@angular/cdk/portal';
@@ -9,20 +9,20 @@ import {NgModule} from '@angular/core';
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
 // import {MatBadgeModule} from '@angular/material/badge';
 // import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {MatButtonModule} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 // import {MatCardModule} from '@angular/material/card';
 // import {MatCheckboxModule} from '@angular/material/checkbox';
 // import {MatChipsModule} from '@angular/material/chips';
 // import {MatStepperModule} from '@angular/material/stepper';
 // import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 // import {MatDividerModule} from '@angular/material/divider';
 // import {MatExpansionModule} from '@angular/material/expansion';
 // import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-// import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+// import { MatListModule } from '@angular/material/list';
 // import {MatMenuModule} from '@angular/material/menu';
 // import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 // import {MatPaginatorModule} from '@angular/material/paginator';
@@ -33,9 +33,9 @@ import {MatInputModule} from '@angular/material/input';
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatSliderModule} from '@angular/material/slider';
 // import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import {MatSortModule} from '@angular/material/sort';
-// import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 // import {MatTabsModule} from '@angular/material/tabs';
 // import {MatToolbarModule} from '@angular/material/toolbar';
 // import {MatTooltipModule} from '@angular/material/tooltip';
@@ -78,7 +78,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     // MatSlideToggleModule,
     MatSnackBarModule,
     // MatSortModule,
-    // MatTableModule,
+    MatTableModule,
     // MatTabsModule,
     // MatToolbarModule,
     // MatTooltipModule,
@@ -87,7 +87,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     // ScrollingModule,
   ]
 })
-export class DemoMaterialModule {}
+export class DemoMaterialModule { }
 
 
 /**  Copyright 2019 Google Inc. All Rights Reserved.

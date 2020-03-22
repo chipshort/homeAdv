@@ -1,0 +1,16 @@
+<div role="main" class="content text-center">
+    <table mat-table [dataSource]="leaderboard">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>User Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.score}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['id', 'score']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['id', 'score']"></mat-row>
+    </table>
+</div>
