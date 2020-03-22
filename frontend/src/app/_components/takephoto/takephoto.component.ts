@@ -62,6 +62,12 @@ export class TakephotoComponent implements OnInit {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     canvas.toBlob(blob => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        console.log(base64data);
+      };
+      reader.readAsDataURL(blob);
       this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
         this.router.navigate(['/verify']).then(v => location.reload()); // need to reload because of some weird display bug
       });
