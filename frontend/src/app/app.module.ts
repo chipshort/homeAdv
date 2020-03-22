@@ -20,6 +20,7 @@ import { AuthService } from './_services/authentification/auth.service';
 import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
 import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
+import { ScorebarComponent } from './_components/scorebar/scorebar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChallengedoneComponent } from './_components/challengedone/challengedon
     ThanksComponent,
     ErrormessageComponent,
     ChallengedoneComponent,
+    ScorebarComponent,
   ],
   imports: [
     DemoMaterialModule,

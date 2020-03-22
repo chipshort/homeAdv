@@ -8,13 +8,14 @@ import {VerificationComponent} from './_components/verification/verification.com
 import {ThanksComponent} from './_components/thanks/thanks.component';
 import {VerificationGuard} from './_guards/verification.guard';
 import {ChallengedoneComponent} from './_components/challengedone/challengedone.component';
+import {ChallengeGuard} from './_guards/challenge.guard';
 
 const routes: Routes = [
   {path: '', component: LoginComponent}, // in production hier DochallengeComponent
   {path: 'login', component: LoginComponent},
   {path: 'verify', canActivate: [VerificationGuard], component: VerificationComponent},
   {path: 'thanks', component: ThanksComponent},
-  {path: 'challenge', component: DochallengeComponent},
+  {path: 'challenge', canActivate: [ChallengeGuard], component: DochallengeComponent},
   {path: 'challenge/takephoto/:id', component: TakephotoComponent},
   {path: 'challengedone', component: ChallengedoneComponent},
   // {path: 'testpage', component: TestpageComponent},
