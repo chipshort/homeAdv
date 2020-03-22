@@ -28,7 +28,6 @@ export class TakephotoComponent implements OnInit {
     // this component gets the challenge as a parameter from the previous component
     this.activatedRoute.params.subscribe(params => {
       this.challengeId = params.id;
-      console.log(this.challengeId);
     });
 
     navigator.mediaDevices.enumerateDevices()
@@ -61,13 +60,7 @@ export class TakephotoComponent implements OnInit {
     video.pause();
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    canvas.toBlob(blob => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        console.log(base64data);
-      };
-      reader.readAsDataURL(blob);
+    canvas.toBlob((blob: Blob) => {
       this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
         this.router.navigate(['/verify']).then(v => location.reload()); // need to reload because of some weird display bug
       });
