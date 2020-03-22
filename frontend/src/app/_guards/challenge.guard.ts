@@ -16,6 +16,7 @@ export class ChallengeGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     return this.challengeService.getChallenge().pipe(map(v => {
+      console.log(v);
       return v !== null ? true : this.router.parseUrl('/challengedone');
     }));
   }

@@ -1,0 +1,95 @@
+// TODO: wuerfelda: This should probably be placed more globally.
+$height-nav: 95px;
+//$background-nav: #ffcd00;
+
+//$foreground-label: #666666;
+//$foreground-dp: #ff6666;
+//$foreground-done: #66cc66;
+//$foreground-ranking: #3399ff;
+
+//:host {
+//  height: 100vh;
+//  display: flex;
+//  flex-direction: column;
+//}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  height: $height-nav;
+//background: $background-nav;
+//background: ;
+
+.score:not(:last-child) {
+  border-right: 1px solid #6f6c5f;
+}
+
+label {
+//color: $foreground-label;
+  font-size: 16px;
+}
+
+.dp,
+.done,
+.ranking {
+  font-size: 30pt;
+}
+
+.dp {
+//color: $foreground-dp;
+}
+
+.done {
+//color: $foreground-done;
+}
+
+.ranking {
+//color: $foreground-ranking;
+}
+}
+
+.content {
+  flex-grow: 1;
+
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #a4a4a4;
+}
+
+h1 {
+  font-size: 60px;
+  color: #ff9900;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+
+.img-fill-width {
+  flex-shrink: 0;
+  width: 40%;
+}
+
+p {
+  padding-right: 20px;
+  font-size: 40px;
+  font-style: italic;
+  color: #292929;
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+}
+
+.footer {
+  height: $height-nav;
+//background: $background-nav;
+}

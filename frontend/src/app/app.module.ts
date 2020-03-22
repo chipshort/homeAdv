@@ -21,6 +21,7 @@ import { ChallengeService } from './_services/challenge/challenge.service';
 import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
 import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
 import { ChallengedoneComponent } from './_components/challengedone/challengedone.component';
+import { ScorebarComponent } from './_components/scorebar/scorebar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ChallengedoneComponent } from './_components/challengedone/challengedon
     ErrormessageComponent,
     LeaderboardComponent,
     ChallengedoneComponent,
+    ScorebarComponent,
   ],
   imports: [
     DemoMaterialModule,

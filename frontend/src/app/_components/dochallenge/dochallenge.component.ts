@@ -16,7 +16,7 @@ export class DochallengeComponent implements OnInit, OnDestroy {
   constructor(private challengeService: ChallengeService) {}
 
   ngOnInit() {
-    this.challengeService
+    this.challengeServiceSubscription = this.challengeService
       .getChallenge()
       .subscribe((challenge: Challenge) => (this.challenge = challenge));
   }
