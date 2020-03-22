@@ -26,7 +26,7 @@ export class TestpageComponent implements OnInit {
 
     canvas.toBlob(blob => {
       this.challengeService.getChallenge().subscribe(challenge => {
-        this.challengeService.uploadChallengeResult(challenge, blob);
+        this.challengeService.uploadChallengeResult(challenge.id + '', blob);
       });
     });
   }

@@ -5,5 +5,5 @@
 
     <p>{{challenge.description}}</p>
   </div>
-  <a routerLink="/challenge/takephoto" [state]="challenge" mat-fab aria-label="Challenge beendet" color="primary" class="floating-action-button right" ><mat-icon>camera_alt</mat-icon></a>
+  <a [routerLink]="['/challenge/takephoto', challenge.id]" mat-fab aria-label="Challenge beendet" color="primary" class="floating-action-button right" ><mat-icon>camera_alt</mat-icon></a>
 </div>

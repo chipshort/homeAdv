@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'verify', component: VerificationComponent},
   {path: 'thanks', component: ThanksComponent},
   {path: 'challenge', component: DochallengeComponent},
-  {path: 'challenge/takephoto', component: TakephotoComponent},
+  {path: 'challenge/takephoto/:id', component: TakephotoComponent},
   {path: 'testpage', component: TestpageComponent}
 ];
 

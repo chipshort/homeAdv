@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Challenge} from '../../challenge';
-import {ChallengeService} from '../../_services/challenge/challenge.service';
-import {Verification} from '../../verification';
+import { ChallengeService } from '../../_services/challenge/challenge.service';
+import { Verification } from '../../verification';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verification',
@@ -14,10 +15,15 @@ import {Verification} from '../../verification';
 export class VerificationComponent implements OnInit {
   verification: Verification;
 
-  constructor(private challengeService: ChallengeService) { }
+  constructor(private router: Router, private challengeService: ChallengeService) { }
 
   ngOnInit(): void {
-    this.challengeService.getChallengeToVerify().subscribe((verification) => this.verification = verification);
+    this.challengeService.getChallengeToVerify().subscribe((verification) => {
+      this.verification = verification;
+      if (verification === null) {
+        this.router.navigate(['/challenge']);
+      }
+    });
   }
 
 }
