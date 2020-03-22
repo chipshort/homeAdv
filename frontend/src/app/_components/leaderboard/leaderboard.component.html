@@ -1,4 +1,4 @@
-<div role="main" class="content text-center">
+<div role="main" class="content text-center vert-center stretch">
     <table mat-table [dataSource]="leaderboard">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>User Id</mat-header-cell>
@@ -13,4 +13,7 @@
         <mat-header-row *matHeaderRowDef="['id', 'score']"></mat-header-row>
         <mat-row *matRowDef="let row; columns: ['id', 'score']"></mat-row>
     </table>
+    <button routerLink="/challenge" mat-raised-button color="primary" class="bottom text-center stretch">
+        <mat-icon>home</mat-icon>
+    </button>
 </div>
