@@ -11,9 +11,9 @@ use rocket_contrib::databases::postgres;
 
 mod account;
 mod challenge;
+mod database_adaptions;
 mod leaderboard;
 mod verification;
-mod database_adaptions
 
 #[database("main_db")]
 pub struct MainDbCon(postgres::Connection);
@@ -48,13 +48,6 @@ fn main() {
             ],
         )
         .mount("/rest/leaderboard", routes![leaderboard::get_leaderboard])
-	.mount("/rest/database_adaptions", 
-		routes![
-			database_adaptions::new_Challenge, 
-			database_adaptions::change_Challenge, 
-			database_adaptions::delete_Challenge
-		],
-	)
         .attach(MainDbCon::fairing())
         .launch();
 }
