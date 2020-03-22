@@ -27,7 +27,12 @@ fn main() {
         .mount("/rest/", routes![index])
         .mount(
             "/rest/account",
-            routes![account::login, account::logout, account::create, account::get_score],
+            routes![
+                account::login,
+                account::logout,
+                account::create,
+                account::get_score
+            ],
         )
         .mount(
             "/rest/challenges",
@@ -37,7 +42,8 @@ fn main() {
             "/rest/verification",
             routes![
                 verification::get_verification,
-                verification::get_submission_picture
+                verification::get_submission_picture,
+                verification::post_verification_submission,
             ],
         )
         .mount("/rest/leaderboard", routes![leaderboard::get_leaderboard])

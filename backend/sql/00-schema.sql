@@ -50,5 +50,5 @@ create table Verification (
 	primary key (verificator_id, completion_id),
 	foreign key(completion_id) references ChallengeCompletion(id) on delete cascade,
 	foreign key(verificator_id) references Person(id),
-	status int not null -- negative denied positive accepted
+	status boolean not null -- negative denied positive accepted
 );
