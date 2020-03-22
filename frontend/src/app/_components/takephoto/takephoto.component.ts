@@ -63,7 +63,7 @@ export class TakephotoComponent implements OnInit {
     // const result = context.getImageData(0, 0, canvas.width, canvas.height); // canvas.toDataURL('image/png');
     canvas.toBlob(blob => {
       this.challengeService.uploadChallengeResult(this.challengeId, blob).subscribe(event => {
-        this.router.navigate(['/verify']);
+        this.router.navigate(['/verify']).then(v => location.reload()); // need to reload because of some weird display bug
       });
     }, 'image/png');
   }
