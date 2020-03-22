@@ -1,24 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DemoMaterialModule } from '../material-module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpRequestInterceptor } from './httpRequestInterceptor';
 import { DochallengeComponent } from './_components/dochallenge/dochallenge.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {DemoMaterialModule} from '../material-module';
+import { ErrormessageComponent } from './_components/errormessage/errormessage.component';
+import { LoginComponent } from './_components/login/login.component';
 import { TakephotoComponent } from './_components/takephoto/takephoto.component';
 import { TestpageComponent } from './_components/testpage/testpage.component';
-import {HttpRequestInterceptor} from './httpRequestInterceptor';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { LoginComponent } from './_components/login/login.component';
-import {AuthService} from './_services/authentification/auth.service';
-import { VerificationComponent } from './_components/verification/verification.component';
 import { ThanksComponent } from './_components/thanks/thanks.component';
-import { ErrormessageComponent } from './_components/errormessage/errormessage.component';
+import { VerificationComponent } from './_components/verification/verification.component';
+import { AuthService } from './_services/authentification/auth.service';
+import { ChallengeService } from './_services/challenge/challenge.service';
+import { ChallengeServiceMock } from './_services/challenge/challenge.service.mock';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { ErrormessageComponent } from './_components/errormessage/errormessage.c
     LoginComponent,
     VerificationComponent,
     ThanksComponent,
-    ErrormessageComponent
+    ErrormessageComponent,
   ],
   imports: [
     DemoMaterialModule,
@@ -37,14 +37,15 @@ import { ErrormessageComponent } from './_components/errormessage/errormessage.c
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
-    {provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
+    { provide: ChallengeService, useClass: ChallengeServiceMock },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

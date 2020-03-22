@@ -1,25 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-
-// import { challenge } from './challenge';
-import { ChallengeService } from '../../_services/challenge/challenge.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Challenge } from '../../challenge';
-import {Subject} from 'rxjs';
+import { ChallengeService } from '../../_services/challenge/challenge.service';
 
 @Component({
   selector: 'app-dochallenge',
   templateUrl: './dochallenge.component.html',
-  styleUrls: ['./dochallenge.component.css']
+  styleUrls: ['./dochallenge.component.css'],
 })
-export class DochallengeComponent implements OnInit {
-  challenge: Challenge;
+export class DochallengeComponent implements OnInit, OnDestroy {
+  private challengeServiceSubscription: Subscription;
 
-  constructor(private challengeService: ChallengeService) { }
+  public challenge: Challenge;
 
-  ngOnInit(): void {
-    this.challengeService.getChallenge().subscribe((challenge: Challenge) => {
-      this.challenge = challenge;
-      console.log(challenge);
-    });
+  constructor(private challengeService: ChallengeService) {}
+
+  ngOnInit() {
+    this.challengeService
+      .getChallenge()
+      .subscribe((challenge: Challenge) => (this.challenge = challenge));
   }
 
+  ngOnDestroy() {
+    // Don't forget to unsubscribe from subscriptions (or use Observable directly and | async Pipe in the template)
+    if (this.challengeServiceSubscription) {
+      this.challengeServiceSubscription.unsubscribe();
+    }
+  }
 }
