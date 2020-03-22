@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ScoreService } from 'src/app/_services/account/score.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-scorebar',
@@ -6,15 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scorebar.component.scss']
 })
 export class ScorebarComponent implements OnInit {
+  private scoreSubscription: Subscription;
 
   // TODO: wuerfelda: Mocked for now.
-  public dps = 203;
-  public doneCount = 14;
+  public dps = 0;
+  public doneCount = 0;
   public ranking = 51;
 
-  constructor() { }
+  constructor(private scoreService: ScoreService) { }
 
   ngOnInit(): void {
+    this.scoreSubscription = this.scoreService.getScore().subscribe(s => {
+      this.dps = s.score;
+      this.ranking = s.rank;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.scoreSubscription)
+      this.scoreSubscription.unsubscribe();
   }
 
 }
